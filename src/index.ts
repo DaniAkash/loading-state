@@ -101,7 +101,7 @@ function loader<T>(
       setTimeout(() => {
         isLongLoadingIndicatorOver = true;
         if (!isDone && response) {
-          onDone(response);
+          doneCallback(response);
         }
       }, busyDelayMs + shortIndicatorVisibilityMs + longIndicatorVisibilityMs);
 
