@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "description": "Build UX friendly loading indicators",
   "scripts": {
-    "build": "rollup -c rollup.config.js",
     "test": "jest",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "prepare": "rollup -c rollup.config.js"
   },
   "main": "lib/index.js",
   "umd:main": "lib/index.umd.js",
