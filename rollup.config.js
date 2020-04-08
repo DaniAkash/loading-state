@@ -2,6 +2,7 @@ import { terser } from "rollup-plugin-terser";
 import pkg from "./package.json";
 import ts from "@wessberg/rollup-plugin-ts";
 import babel from "rollup-plugin-babel";
+import clean from "rollup-plugin-clean";
 
 export default {
   input: "src/index.ts",
@@ -21,5 +22,5 @@ export default {
     },
   ],
   external: [...Object.keys(pkg.dependencies || {})],
-  plugins: [ts(), babel(), terser()],
+  plugins: [clean(), ts(), babel(), terser()],
 };
