@@ -18,7 +18,7 @@ export default {
     {
       file: pkg["umd:main"],
       format: "umd",
-      name: "loadingStatus",
+      name: "loadingState",
     },
   ],
   external: [...Object.keys(pkg.dependencies || {})],

@@ -1,5 +1,5 @@
 {
-  "name": "loading-status",
+  "name": "loading-state",
   "version": "0.0.1-alpha-1",
   "description": "Build UX friendly loading indicators",
   "scripts": {
