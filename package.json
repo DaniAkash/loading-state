@@ -10,7 +10,7 @@
   "main": "lib/index.js",
   "umd:main": "lib/index.umd.js",
   "module": "lib/index.m.js",
-  "source": "src/index.tsx",
+  "source": "src/index.ts",
   "types": "lib/index.d.ts",
   "author": "DaniAkash <s.daniakash@gmail.com> (https://github.com/DaniAkash)",
   "repository": "DaniAkash/loading-status",

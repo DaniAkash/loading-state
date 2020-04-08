@@ -4,22 +4,22 @@ import ts from "@wessberg/rollup-plugin-ts";
 import babel from "rollup-plugin-babel";
 
 export default {
-  input: "src/index.tsx",
+  input: "src/index.ts",
   output: [
     {
       file: pkg.main,
-      format: "cjs"
+      format: "cjs",
     },
     {
       file: pkg.module,
-      format: "es"
+      format: "es",
     },
     {
       file: pkg["umd:main"],
       format: "umd",
-      name: "loadingStatus"
-    }
+      name: "loadingStatus",
+    },
   ],
   external: [...Object.keys(pkg.dependencies || {})],
-  plugins: [ts(), babel(), terser()]
+  plugins: [ts(), babel(), terser()],
 };
