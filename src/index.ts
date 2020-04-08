@@ -1,17 +1,3 @@
-const myNetworkRequest = (timeout: number = 1000): Promise<string> => {
-  console.log("Request ends in - ", timeout + " ms");
-
-  return new Promise((resolve, reject) => {
-    setTimeout(() => resolve("Network request over!"), timeout);
-  });
-};
-
-const timingConfig: ITimeConfig = {
-  busyDelayMs: 300,
-  shortIndicatorVisibilityMs: 300,
-  longIndicatorVisibilityMs: 300,
-};
-
 export interface ITimeConfig {
   busyDelayMs?: number;
   shortIndicatorVisibilityMs?: number;
@@ -31,7 +17,7 @@ export interface ICallbacks<T> {
   error?: (arg: Error) => any;
 }
 
-function loader<T>(
+export default function loader<T>(
   suspense: Promise<T>,
   {
     shortLoading: shortLoadingCallback = () => null,
@@ -73,9 +59,9 @@ function loader<T>(
         setTimeout(() => {
           if (!isDone && isShortLoadingIndicatorOver) {
             if (!isLongLoadingStarted) {
-              doneCallback(result);
+              onDone(result);
             } else if (isLongLoadingIndicatorOver) {
-              doneCallback(result);
+              onDone(result);
             }
           }
         });
@@ -101,7 +87,7 @@ function loader<T>(
       setTimeout(() => {
         isLongLoadingIndicatorOver = true;
         if (!isDone && response) {
-          doneCallback(response);
+          onDone(response);
         }
       }, busyDelayMs + shortIndicatorVisibilityMs + longIndicatorVisibilityMs);
 
@@ -112,7 +98,7 @@ function loader<T>(
             isLongLoadingStarted = true;
             longLoadingCallback();
           } else {
-            doneCallback(response);
+            onDone(response);
           }
         }
         resolve("pending-long");
@@ -133,33 +119,3 @@ function loader<T>(
     }
   });
 }
-
-console.time("short");
-console.time("long");
-console.time("done");
-
-loader(
-  myNetworkRequest(),
-  {
-    shortLoading: () => {
-      console.log("---------------");
-      console.log("short loading");
-      console.timeEnd("short");
-      console.log("---------------");
-    },
-    longLoading: () => {
-      console.log("---------------");
-      console.log("long loading");
-      console.timeEnd("long");
-      console.log("---------------");
-    },
-    done: (result) => {
-      console.log("Done-----------");
-      console.log(result);
-      console.timeEnd("done");
-      console.log("---------------");
-    },
-    error: () => {},
-  },
-  timingConfig
-);
