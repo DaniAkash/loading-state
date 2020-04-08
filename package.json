@@ -20,9 +20,9 @@
   ],
   "keywords": [
     "loading",
-    "loading-indicators",
-    "react",
-    "promise",
+    "loading-state",
+    "loaders",
+    "loading-indicator",
     "fetch",
     "ux"
   ],
