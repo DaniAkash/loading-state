@@ -13,7 +13,7 @@
   "source": "src/index.ts",
   "types": "lib/index.d.ts",
   "author": "DaniAkash <s.daniakash@gmail.com> (https://github.com/DaniAkash)",
-  "repository": "DaniAkash/loading-status",
+  "repository": "DaniAkash/loading-state",
   "license": "MIT",
   "files": [
     "lib"
