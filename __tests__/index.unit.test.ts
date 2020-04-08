@@ -34,7 +34,7 @@ describe("Testing loading status", () => {
       expect(errorHandler).toHaveBeenCalledTimes(0);
       expect(doneHandler).toBeCalledTimes(1);
       done();
-    }, 1000);
+    }, 2000);
   });
 
   it("Request ends in 400 ms", (done) => {
@@ -59,7 +59,7 @@ describe("Testing loading status", () => {
       expect(errorHandler).toHaveBeenCalledTimes(0);
       expect(doneHandler).toBeCalledTimes(1);
       done();
-    }, 1000);
+    }, 2000);
   });
 
   it("Request ends in 800 ms", (done) => {
@@ -81,21 +81,21 @@ describe("Testing loading status", () => {
 
     setTimeout(() => {
       expect(shortLoading).toHaveBeenCalledTimes(1);
-      expect(longLoading).toHaveBeenCalledTimes(1);
+      expect(longLoading).toHaveBeenCalledTimes(0);
       expect(errorHandler).toHaveBeenCalledTimes(0);
       expect(doneHandler).toBeCalledTimes(1);
       done();
-    }, 1000);
+    }, 2000);
   });
 
-  it("Request ends in 1000 ms", (done) => {
+  it("Request ends in 1200 ms", (done) => {
     const timingConfig: ITimeConfig = {
       busyDelayMs: 300,
       shortIndicatorVisibilityMs: 300,
       longIndicatorVisibilityMs: 300,
     };
     loader(
-      myNetworkRequest(1000),
+      myNetworkRequest(1200),
       {
         shortLoading: shortLoading,
         longLoading: longLoading,
@@ -111,6 +111,6 @@ describe("Testing loading status", () => {
       expect(errorHandler).toHaveBeenCalledTimes(0);
       expect(doneHandler).toBeCalledTimes(1);
       done();
-    }, 1500);
+    }, 2000);
   });
 });
