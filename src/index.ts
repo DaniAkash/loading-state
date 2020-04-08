@@ -89,6 +89,9 @@ export default function loader<T>(
 
       setTimeout(() => {
         isShortLoadingIndicatorOver = true;
+        if (!isDone && response) {
+          onDone(response);
+        }
       }, busyDelayMs + shortIndicatorVisibilityMs);
 
       setTimeout(() => {
@@ -126,7 +129,7 @@ export default function loader<T>(
   });
 }
 
-// const myNetworkRequest = (timeout: number = 400): Promise<string> => {
+// const myNetworkRequest = (timeout: number = 500): Promise<string> => {
 //   console.log("Request ends in - ", timeout + " ms");
 
 //   return new Promise((resolve, reject) => {
