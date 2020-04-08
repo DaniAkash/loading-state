@@ -1,4 +1,4 @@
-const myNetworkRequest = (timeout: number = 700): Promise<string> => {
+const myNetworkRequest = (timeout: number = 1000): Promise<string> => {
   console.log("Request ends in - ", timeout + " ms");
 
   return new Promise((resolve, reject) => {
@@ -57,6 +57,7 @@ function loader<T>(
   let response: T | undefined;
   let isDone: boolean = false;
   let isShortLoadingIndicatorOver: boolean = false;
+  let isLongLoadingStarted: boolean = false;
   let isLongLoadingIndicatorOver: boolean = false;
 
   let onDone = (result: T) => {
@@ -71,7 +72,11 @@ function loader<T>(
         resolve("done");
         setTimeout(() => {
           if (!isDone && isShortLoadingIndicatorOver) {
-            doneCallback(result);
+            if (!isLongLoadingStarted) {
+              doneCallback(result);
+            } else if (isLongLoadingIndicatorOver) {
+              doneCallback(result);
+            }
           }
         });
       });
@@ -94,9 +99,17 @@ function loader<T>(
       }, busyDelayMs);
 
       setTimeout(() => {
+        isLongLoadingIndicatorOver = true;
+        if (!isDone && response) {
+          onDone(response);
+        }
+      }, busyDelayMs + shortIndicatorVisibilityMs + longIndicatorVisibilityMs);
+
+      setTimeout(() => {
         isShortLoadingIndicatorOver = true;
         if (!isDone) {
           if (!response) {
+            isLongLoadingStarted = true;
             longLoadingCallback();
           } else {
             doneCallback(response);
