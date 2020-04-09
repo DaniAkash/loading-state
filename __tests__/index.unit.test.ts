@@ -63,21 +63,12 @@ describe("Testing loading status", () => {
   });
 
   it("Request ends in 800 ms", (done) => {
-    const timingConfig: ITimeConfig = {
-      busyDelayMs: 300,
-      shortIndicatorVisibilityMs: 300,
-      longIndicatorVisibilityMs: 300,
-    };
-    loader(
-      myNetworkRequest(800),
-      {
-        shortLoading: shortLoading,
-        longLoading: longLoading,
-        done: doneHandler,
-        error: errorHandler,
-      },
-      timingConfig
-    );
+    loader(myNetworkRequest(800), {
+      shortLoading: shortLoading,
+      longLoading: longLoading,
+      done: doneHandler,
+      error: errorHandler,
+    });
 
     setTimeout(() => {
       expect(shortLoading).toHaveBeenCalledTimes(1);
@@ -89,21 +80,12 @@ describe("Testing loading status", () => {
   });
 
   it("Request ends in 1200 ms", (done) => {
-    const timingConfig: ITimeConfig = {
-      busyDelayMs: 300,
-      shortIndicatorVisibilityMs: 300,
-      longIndicatorVisibilityMs: 300,
-    };
-    loader(
-      myNetworkRequest(1200),
-      {
-        shortLoading: shortLoading,
-        longLoading: longLoading,
-        done: doneHandler,
-        error: errorHandler,
-      },
-      timingConfig
-    );
+    loader(myNetworkRequest(1200), {
+      shortLoading: shortLoading,
+      longLoading: longLoading,
+      done: doneHandler,
+      error: errorHandler,
+    });
 
     setTimeout(() => {
       expect(shortLoading).toHaveBeenCalledTimes(1);
