@@ -1,6 +1,6 @@
 export interface ITimeConfig {
   busyDelayMs?: number;
-  longBusyDelay?: number;
+  longBusyDelayMs?: number;
   shortIndicatorVisibilityMs?: number;
   longIndicatorVisibilityMs?: number;
 }
@@ -35,10 +35,10 @@ export default function loader<T>(
     busyDelayMs = 300,
     shortIndicatorVisibilityMs = 300,
     longIndicatorVisibilityMs = 300,
-    longBusyDelay = 1000,
+    longBusyDelayMs = 1000,
   }: ITimeConfig = {
     busyDelayMs: 300,
-    longBusyDelay: 1000,
+    longBusyDelayMs: 1000,
     shortIndicatorVisibilityMs: 300,
     longIndicatorVisibilityMs: 300,
   }
@@ -101,7 +101,7 @@ export default function loader<T>(
         if (!isDone && response) {
           onDone(response);
         }
-      }, longBusyDelay + longIndicatorVisibilityMs);
+      }, longBusyDelayMs + longIndicatorVisibilityMs);
 
       setTimeout(() => {
         if (!isDone) {
@@ -113,7 +113,7 @@ export default function loader<T>(
           }
         }
         resolve("pending-long");
-      }, longBusyDelay);
+      }, longBusyDelayMs);
     });
 
   Promise.race([
