@@ -121,12 +121,8 @@ export default function loader<T>(
     noLoadingIndicatorBuffer(),
     displayLoadingIndicator(),
   ]).then((result) => {
-    switch (result) {
-      case "done":
-        if (response) onDone(response);
-        break;
-      default:
-        break;
+    if (result === "done" && response) {
+      onDone(response);
     }
   });
 }

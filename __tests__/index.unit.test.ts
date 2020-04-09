@@ -113,4 +113,19 @@ describe("Testing loading status", () => {
       done();
     }, 2000);
   });
+
+  it("Request throws Error", (done) => {
+    loader(new Promise((res, rej) => rej()), {
+      shortLoading: shortLoading,
+      longLoading: longLoading,
+      done: doneHandler,
+      error: errorHandler,
+    });
+
+    setTimeout(() => {
+      expect(doneHandler).toBeCalledTimes(0);
+      expect(errorHandler).toHaveBeenCalledTimes(1);
+      done();
+    }, 2000);
+  });
 });
