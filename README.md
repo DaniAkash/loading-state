@@ -24,9 +24,7 @@ Build UX friendly loading indicators by maintaining a **"loading state"** 🤗
 
 - 📦 [Installation](#installation)
 - ℹ️ [Usage](#usage)
-- 👨🏽‍🏫 [Tutorial](#tutorial)
 - 💡 [Examples](#examples)
-- 🏎 [Performance](#performance)
 
 ## Motivation
 
