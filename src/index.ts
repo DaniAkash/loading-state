@@ -56,19 +56,21 @@ export default function loader<T>(
 
   const resolveSuspense = (): Promise<"done"> => {
     return new Promise<"done">((resolve, reject) => {
-      suspense.then((result) => {
-        response = result;
-        resolve("done");
-        setTimeout(() => {
-          if (!isDone && isShortLoadingIndicatorOver) {
-            if (!isLongLoadingStarted) {
-              onDone(result);
-            } else if (isLongLoadingIndicatorOver) {
-              onDone(result);
+      suspense
+        .then((result) => {
+          response = result;
+          resolve("done");
+          setTimeout(() => {
+            if (!isDone && isShortLoadingIndicatorOver) {
+              if (!isLongLoadingStarted) {
+                onDone(result);
+              } else if (isLongLoadingIndicatorOver) {
+                onDone(result);
+              }
             }
-          }
-        });
-      });
+          });
+        })
+        .catch((e) => errorCallback(e));
     });
   };
 
