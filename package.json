@@ -1,7 +1,7 @@
 {
   "name": "loading-state",
-  "version": "0.0.1-alpha-3",
-  "description": "Build UX friendly loading indicators",
+  "version": "0.0.1",
+  "description": "Build UX friendly loading indicators by maintaining a loading state",
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage",
@@ -19,12 +19,11 @@
     "lib"
   ],
   "keywords": [
+    "ux",
     "loading",
-    "loading-state",
-    "loaders",
-    "loading-indicator",
     "fetch",
-    "ux"
+    "loading-indicator",
+    "ajax"
   ],
   "devDependencies": {
     "@babel/core": "7.9.0",
